@@ -10,25 +10,14 @@ trait SlickInit {
 
   val logger = LoggerFactory.getLogger(getClass)
 
-  val cpdsMaster = {
-    val props = new Properties
-    props.load(getClass.getResourceAsStream("/c3p0.properties"))
-    val cpds = new ComboPooledDataSource
-    cpds.setProperties(props)
-    cpds.setJdbcUrl(props.getProperty("c3p0.jdbcUrlMaster"))
-    logger.info("Created Master c3p0 connection pool")
+  def createDataSource(name: String): ComboPooledDataSource = {
+    val cpds = new ComboPooledDataSource(name)
+    logger.info(f"Created c3p0 connection pool: $name")
     cpds
   }
-
-  val cpdsSlave = {
-    val props = new Properties
-    props.load(getClass.getResourceAsStream("/c3p0.properties"))
-    val cpds = new ComboPooledDataSource
-    cpds.setProperties(props)
-    cpds.setJdbcUrl(props.getProperty("c3p0.jdbcUrlSlave"))
-    logger.info("Created Slave c3p0 connection pool")
-    cpds
-  }
+ 
+  val cpdsMaster = createDataSource("master")
+  val cpdsSlave = createDataSource("slave")
 
   def setupDB(instance: String): Database = instance match { 
   	case "master" => Database.forDataSource(cpdsMaster)
