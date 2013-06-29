@@ -5,6 +5,7 @@
 *.DS_Store
 *.swp
 *.out
+.tags
 
 # rails specific
 *.sqlite3
