@@ -34,8 +34,10 @@ Here you can put your support methods to help with any database queries.  Not en
 Here you can configure multiple data sources that SlickInit will read and connect to.  This allows easy configuration of the DataSources by name.
 
 **ScalatraBootstrap.scala**
+
 Check out here how we create a val for each DB instance that we need and then pass those to the constructor of the servlets.  Also note that we needed to add the destroy method to ensure we tear down the connection pool on app shutdown 
 
 **MyScalatraServlet**
+
 Sample controller servlet that you would use.  Notice how we extend the SlickSupport trait and also notice how we add constructor params to the Servlet.  This allows us to pass in an instance of the db vals from the Bootstrap file to obtain a DB Session
 

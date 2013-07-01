@@ -21,11 +21,6 @@ object Users extends Table[(String)]("USERS") {
 //-------------------------------------------------------
 trait SlickSupport {
 
-  def getUsers = {
-  	val UserList = for {
-  			u <- Users 
-  		}yield (u.email.asColumnOf[String])
-  	UserList
-  }
-
+  def getUserEmails = {  Users.map( _.email.asColumnOf[String]) }
+ 
 }

@@ -9,7 +9,7 @@ class MyScalatraServlet(dbMaster: Database, dbSlave: Database) extends Slickpool
 
   get("/") {
   	dbMaster withSession {
-  	  val UserList = getUsers
+  	  val UserList = getUserEmails
       <html>
        <body>
         <h1>Hello,</h1>
@@ -22,7 +22,7 @@ class MyScalatraServlet(dbMaster: Database, dbSlave: Database) extends Slickpool
 
   get("/slave") {
   	dbSlave withSession {
-  	  val UserList = getUsers
+  	  val UserList = getUserEmails
       <html>
        <body>
         <h1>Hello,</h1>
